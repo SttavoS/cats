@@ -4,7 +4,7 @@ import Footer from './components/layout/Footer/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 
-import './assets/global.css';
+import './assets/css/global.css';
 
 const App = () => {
   return (
