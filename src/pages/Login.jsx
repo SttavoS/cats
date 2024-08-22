@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import LoginForm from '../components/account/LoginForm';
-import CreateAccountForm from '../components/account/CreateAccountForm';
-import RecoverPasswordForm from '../components/account/RecoverPasswordForm';
-import ResetPasswordForm from '../components/account/ResetPasswordForm';
+import LoginForm from '../components/layouts/account/LoginForm';
+import CreateAccountForm from '../components/layouts/account/CreateAccountForm';
+import RecoverPasswordForm from '../components/layouts/account/RecoverPasswordForm';
+import ResetPasswordForm from '../components/layouts/account/ResetPasswordForm';
 
 const Login = () => {
   return (
