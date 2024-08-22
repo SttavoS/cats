@@ -13,6 +13,7 @@
 body {
   color: var(--black);
   font-family: var(--type-first);
+  padding-top: 4rem;
 }
 
 ul, li {
