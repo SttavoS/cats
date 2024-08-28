@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useForm from '../../../hooks/useForm';
 import Button from '../../elements/Button/Button';
 import Input from '../../elements/Inputs/Input';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const username = useForm('email');
+  const password = useForm('email');
 
   const submitLogin = event => {
     event.preventDefault();
@@ -24,20 +24,8 @@ const LoginForm = () => {
     <section>
       <h1>Login</h1>
       <form onSubmit={submitLogin}>
-        <Input
-          label="Usuário"
-          type="text"
-          name="username"
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-        <Input
-          label="Senha"
-          type="password"
-          name="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
+        <Input label="Usuário" type="text" name="username" {...username} />
+        <Input label="Senha" type="password" name="password" {...password} />
         <Button type="submit">Entrar</Button>
       </form>
       <Link to="/login/criar">Criar conta</Link>
