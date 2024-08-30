@@ -7,8 +7,8 @@ import { GET_USER } from '../../../api';
 import { UserContext } from '../../../context/UserContext';
 
 const LoginForm = () => {
-  const username = useForm('email');
-  const password = useForm('email');
+  const username = useForm();
+  const password = useForm();
 
   const { login, error, isLoading } = useContext(UserContext);
 
