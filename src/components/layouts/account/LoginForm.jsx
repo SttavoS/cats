@@ -12,20 +12,6 @@ const LoginForm = () => {
 
   const { login, error, isLoading } = useContext(UserContext);
 
-  useEffect(() => {
-    const token = window.localStorage.getItem('token');
-    if (token) {
-      getUser(token);
-    }
-  }, []);
-
-  const getUser = async token => {
-    const { url, options } = GET_USER(token);
-
-    const response = await fetch(url, options);
-    const json = response.json();
-  };
-
   const submitLogin = async event => {
     event.preventDefault();
 
