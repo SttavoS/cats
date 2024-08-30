@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import Button from '../../elements/Button/Button';
 import Input from '../../elements/Inputs/Input';
-import { GET_USER, TOKEN_POST } from '../../../api';
+import { GET_USER } from '../../../api';
 import { UserContext } from '../../../context/UserContext';
 
 const LoginForm = () => {
   const username = useForm('email');
   const password = useForm('email');
 
-  const { userLogin } = useContext(UserContext);
+  const { login, error, isLoading } = useContext(UserContext);
 
   useEffect(() => {
-    const token = window.localStorage.getItem('token', json.token);
+    const token = window.localStorage.getItem('token');
     if (token) {
       getUser(token);
     }
@@ -30,7 +30,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      userLogin(username.value, password.value);
+      login(username.value, password.value);
     }
   };
 
@@ -40,7 +40,15 @@ const LoginForm = () => {
       <form onSubmit={submitLogin}>
         <Input label="Usuário" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
-        <Button type="submit">Entrar</Button>
+        {isLoading ? (
+          <Button type="submit" disabled>
+            Carregando...
+          </Button>
+        ) : (
+          <Button type="submit">Entrar</Button>
+        )}
+
+        {error && <p>{error}</p>}
       </form>
       <Link to="/login/criar">Criar conta</Link>
     </section>
