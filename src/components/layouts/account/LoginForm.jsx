@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useForm from '../../../hooks/useForm';
 import Button from '../../elements/Button/Button';
 import Input from '../../elements/Inputs/Input';
 import { GET_USER, TOKEN_POST } from '../../../api';
+import { UserContext } from '../../../context/UserContext';
 
 const LoginForm = () => {
   const username = useForm('email');
   const password = useForm('email');
+
+  const { userLogin } = useContext(UserContext);
 
   useEffect(() => {
     const token = window.localStorage.getItem('token', json.token);
@@ -27,16 +30,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      const { url, options } = TOKEN_POST({
-        username: username.value,
-        password: password.value,
-      });
-
-      const response = await fetch(url, options);
-      const json = response.json();
-
-      getUser(json.token);
-      window.localStorage.setItem('token', json.token);
+      userLogin(username.value, password.value);
     }
   };
 
